@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slx.zsxt.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.slx.zsxt.model.User">
+    <constructor>
+      <idArg column="user_instid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_state" javaType="java.lang.Short" jdbcType="NUMERIC" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_sex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="mphone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="org_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_idcard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_birthday" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="user_sbflg" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="user_inname" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_instid, user_id, user_state, user_name, user_key, user_sex, email, c_date, update_date, 
+    mphone, org_id, user_idcard, user_birthday, user_sbflg, user_inname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.slx.zsxt.model.User">
+    insert into t_user (user_instid, user_id, user_state, 
+      user_name, user_key, user_sex, 
+      email, c_date, update_date, 
+      mphone, org_id, user_idcard, 
+      user_birthday, user_sbflg, user_inname
+      )
+    values (#{userInstid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userState,jdbcType=NUMERIC}, 
+      #{userName,jdbcType=VARCHAR}, #{userKey,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{cDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{mphone,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, 
+      #{userBirthday,jdbcType=TIMESTAMP}, #{userSbflg,jdbcType=NUMERIC}, #{userInname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.slx.zsxt.model.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userInstid != null">
+        user_instid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userState != null">
+        user_state,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userKey != null">
+        user_key,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="cDate != null">
+        c_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="mphone != null">
+        mphone,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="userIdcard != null">
+        user_idcard,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="userSbflg != null">
+        user_sbflg,
+      </if>
+      <if test="userInname != null">
+        user_inname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userInstid != null">
+        #{userInstid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        #{userState,jdbcType=NUMERIC},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        #{cDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mphone != null">
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSbflg != null">
+        #{userSbflg,jdbcType=NUMERIC},
+      </if>
+      <if test="userInname != null">
+        #{userInname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.slx.zsxt.model.User">
+    update t_user
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        user_state = #{userState,jdbcType=NUMERIC},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        user_key = #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        c_date = #{cDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mphone != null">
+        mphone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSbflg != null">
+        user_sbflg = #{userSbflg,jdbcType=NUMERIC},
+      </if>
+      <if test="userInname != null">
+        user_inname = #{userInname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.slx.zsxt.model.User">
+    update t_user
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_state = #{userState,jdbcType=NUMERIC},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_key = #{userKey,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      c_date = #{cDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      mphone = #{mphone,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      user_sbflg = #{userSbflg,jdbcType=NUMERIC},
+      user_inname = #{userInname,jdbcType=VARCHAR}
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.slx.zsxt.model.User">
+    <constructor>
+      <idArg column="user_instid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_state" javaType="java.lang.Short" jdbcType="NUMERIC" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_sex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="mphone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="org_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_idcard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_birthday" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="user_sbflg" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="user_inname" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_instid, user_id, user_state, user_name, user_key, user_sex, email, c_date, update_date, 
+    mphone, org_id, user_idcard, user_birthday, user_sbflg, user_inname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.slx.zsxt.model.User">
+    insert into t_user (user_instid, user_id, user_state, 
+      user_name, user_key, user_sex, 
+      email, c_date, update_date, 
+      mphone, org_id, user_idcard, 
+      user_birthday, user_sbflg, user_inname
+      )
+    values (#{userInstid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userState,jdbcType=NUMERIC}, 
+      #{userName,jdbcType=VARCHAR}, #{userKey,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{cDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{mphone,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, 
+      #{userBirthday,jdbcType=TIMESTAMP}, #{userSbflg,jdbcType=NUMERIC}, #{userInname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.slx.zsxt.model.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userInstid != null">
+        user_instid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userState != null">
+        user_state,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userKey != null">
+        user_key,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="cDate != null">
+        c_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="mphone != null">
+        mphone,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="userIdcard != null">
+        user_idcard,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="userSbflg != null">
+        user_sbflg,
+      </if>
+      <if test="userInname != null">
+        user_inname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userInstid != null">
+        #{userInstid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        #{userState,jdbcType=NUMERIC},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        #{cDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mphone != null">
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSbflg != null">
+        #{userSbflg,jdbcType=NUMERIC},
+      </if>
+      <if test="userInname != null">
+        #{userInname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.slx.zsxt.model.User">
+    update t_user
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        user_state = #{userState,jdbcType=NUMERIC},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        user_key = #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        c_date = #{cDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mphone != null">
+        mphone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSbflg != null">
+        user_sbflg = #{userSbflg,jdbcType=NUMERIC},
+      </if>
+      <if test="userInname != null">
+        user_inname = #{userInname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.slx.zsxt.model.User">
+    update t_user
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_state = #{userState,jdbcType=NUMERIC},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_key = #{userKey,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      c_date = #{cDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      mphone = #{mphone,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      user_sbflg = #{userSbflg,jdbcType=NUMERIC},
+      user_inname = #{userInname,jdbcType=VARCHAR}
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.slx.zsxt.model.User">
+    <constructor>
+      <idArg column="user_instid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_state" javaType="java.lang.Short" jdbcType="NUMERIC" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_sex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="c_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="mphone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="org_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_idcard" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_birthday" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="user_sbflg" javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+      <arg column="user_inname" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_instid, user_id, user_state, user_name, user_key, user_sex, email, c_date, update_date, 
+    mphone, org_id, user_idcard, user_birthday, user_sbflg, user_inname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.slx.zsxt.model.User">
+    insert into t_user (user_instid, user_id, user_state, 
+      user_name, user_key, user_sex, 
+      email, c_date, update_date, 
+      mphone, org_id, user_idcard, 
+      user_birthday, user_sbflg, user_inname
+      )
+    values (#{userInstid,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userState,jdbcType=NUMERIC}, 
+      #{userName,jdbcType=VARCHAR}, #{userKey,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{cDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{mphone,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, #{userIdcard,jdbcType=VARCHAR}, 
+      #{userBirthday,jdbcType=TIMESTAMP}, #{userSbflg,jdbcType=NUMERIC}, #{userInname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.slx.zsxt.model.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userInstid != null">
+        user_instid,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userState != null">
+        user_state,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userKey != null">
+        user_key,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="cDate != null">
+        c_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="mphone != null">
+        mphone,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="userIdcard != null">
+        user_idcard,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="userSbflg != null">
+        user_sbflg,
+      </if>
+      <if test="userInname != null">
+        user_inname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userInstid != null">
+        #{userInstid,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        #{userState,jdbcType=NUMERIC},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        #{cDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mphone != null">
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSbflg != null">
+        #{userSbflg,jdbcType=NUMERIC},
+      </if>
+      <if test="userInname != null">
+        #{userInname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.slx.zsxt.model.User">
+    update t_user
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null">
+        user_state = #{userState,jdbcType=NUMERIC},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userKey != null">
+        user_key = #{userKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cDate != null">
+        c_date = #{cDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mphone != null">
+        mphone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdcard != null">
+        user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSbflg != null">
+        user_sbflg = #{userSbflg,jdbcType=NUMERIC},
+      </if>
+      <if test="userInname != null">
+        user_inname = #{userInname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.slx.zsxt.model.User">
+    update t_user
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_state = #{userState,jdbcType=NUMERIC},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_key = #{userKey,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      c_date = #{cDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      mphone = #{mphone,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      user_idcard = #{userIdcard,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      user_sbflg = #{userSbflg,jdbcType=NUMERIC},
+      user_inname = #{userInname,jdbcType=VARCHAR}
+    where user_instid = #{userInstid,jdbcType=VARCHAR}
+  </update>
+</mapper>
